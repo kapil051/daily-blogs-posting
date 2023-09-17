@@ -1,0 +1,30 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.header{
+      height: 60px;
+      background-color: #cbe8de;
+         display: flex;
+         justify-content: space-between;
+          align-items: center;
+}
+
+.header h2{
+    margin-left: 100px;
+}
+
+.header ul{
+      margin-right: 150px;
+     display: flex;
+       justify-content: space-between;
+         align-items: center;
+           gap: 40px;
+}
+
+.header ul li{
+   list-style: none;
+    font-size: 20px;
+}

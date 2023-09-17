@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <%- include("header") %>
+
+       <div style="padding: 15px;">
+
+        
+        <div class="main">
+               
+            <h2 style="margin-top: 10px;margin-bottom: 10px;">HOME:</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos amet sunt ullam! Illo fugit dicta natus rerum sequi corporis aliquid et nihil exercitationem dolorem. Aut mollitia, quam iure eos dolor nostrum placeat blanditiis odio, quidem illo error repellendus minima non voluptatum temporibus vitae magnam facere doloremque eveniet quisquam ullam distinctio debitis autem. Unde exercitationem voluptas alias eius sapiente eos suscipit nobis. Porro eveniet tempora at? Aperiam, nam! Eligendi aliquam assumenda expedita quod quisquam, praesentium iste porro dolore distinctio quas aut vero nobis, quaerat, debitis animi ab neque! Voluptatem ab, dicta veniam suscipit, atque rem debitis expedita, quaerat magnam odio temporibus!</p>
+
+     </div>
+
+     
+<div class="main-2">
+ <h2 style="padding: 20px; padding-left: 0px;">List of Blog Posts:</h2>
+ <ul>
+     <% blogs.forEach(blog => { %>
+         <li style="padding: 10px; padding-left: 0px ; list-style: circle; padding-right: 0px;">
+             <h3> <%= blog.title %></h3>
+             <p><%= blog.post %>
+
+                  <form action="/delete-blog" method="POST">
+                     <input type="hidden" name="blogId" value="<%= blog._id %>">
+                     <button style="cursor: pointer;" type="submit">Delete:<i class="fa-solid fa-trash"></i></button>
+                   </form>
+
+              </p>
+         </li>
+        
+     <% }); %>
+ </ul>
+
+</div>
+
+
+
+
+       </div>
+
+
+    <%- include("footer") %>
+    
+    <script src="https://kit.fontawesome.com/faefb97bbf.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
