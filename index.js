@@ -3,22 +3,24 @@ import axios from "axios";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 
-
    const port=3000;
    const app=express();
 
    app.use(express.urlencoded({ extended: true }));
    app.use(express.static("public"));
 
-   const mongoDBURI = 'mongodb://0.0.0.0:27017/blogs';
-        mongoose.connect(mongoDBURI);
+  //  const mongoDBURI = 'mongodb://0.0.0.0:27017/blogs';
+  //       mongoose.connect(mongoDBURI);
+
+         mongoose.connect("mongodb+srv://kapilkant471:kantkapil@cluster0.kdwvilt.mongodb.net/randomBlogs")
 
 
         mongoose.connection.on('connected', () => {
           console.log('Mongoose connected to MongoDB');
         });
+      
 
-
+ 
         const blogSchema = new mongoose.Schema({
           title: {
             type: String,
