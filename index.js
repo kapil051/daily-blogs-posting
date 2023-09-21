@@ -9,18 +9,26 @@ import bodyParser from "body-parser";
    app.use(express.urlencoded({ extended: true }));
    app.use(express.static("public"));
 
-  //  const mongoDBURI = 'mongodb://0.0.0.0:27017/blogs';
-  //       mongoose.connect(mongoDBURI);
+        // const mongoDBURI = 'mongodb://0.0.0.0:27017/blogs';
+        // mongoose.connect(mongoDBURI);
 
-         mongoose.connect("mongodb+srv://kapilkant471:kantkapil@cluster0.kdwvilt.mongodb.net/randomBlogs")
+        // mongoose.connection.on('connected', () => {
+        //   console.log('Mongoose connected to MongoDB');
+        // });
 
+        const dbURL="mongodb+srv://new_user:4dXTZbvSxjwHgwjT@cluster0.kdwvilt.mongodb.net/REMOTEDB";
 
-        mongoose.connection.on('connected', () => {
-          console.log('Mongoose connected to MongoDB');
-        });
-      
-
- 
+        const connectionParams={
+           useNewUrlParser:true,
+            useUnifiedTopology:true,
+        }
+       
+        mongoose.connect(dbURL,connectionParams).then(()=>{
+             console.info("connected to the db!");
+        }).catch((e)=>{
+           console.log("error:",e);
+        })
+       
         const blogSchema = new mongoose.Schema({
           title: {
             type: String,
