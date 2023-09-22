@@ -29,6 +29,8 @@ import bodyParser from "body-parser";
            console.log("error:",e);
         })
        
+        //blog-schema
+
         const blogSchema = new mongoose.Schema({
           title: {
             type: String,
@@ -42,20 +44,67 @@ import bodyParser from "body-parser";
 
      const Blog = mongoose.model('Blog', blogSchema);
 
-    
-   app.get("/",async(req,res)=>{
+     //password schema
+
+     const userSchema = new mongoose.Schema({
+
+       username: {
+         type: String,
+         required: true,
+         unique: true,
+       },
+       email: {
+         type: String,
+         required: true,
+         unique: true,
+         match: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+       },
+       password: {
+         type: String,
+         required: true,
+       },
+
+     });
+     
+     const User = mongoose.model('User', userSchema);
 
 
-     try {
-          const blogs = await Blog.find(); 
-            // console.log(blogs); //return the array of blogs
-          res.render('home.ejs', { blogs }); 
-        } catch (err) {
-          console.error(err);
-          res.status(500).send('Internal Server Error');
-        }
+      app.get("/",(req,res)=>{
+            res.render("first.ejs");
+      })
 
-   })
+     app.get("/signup",(req,res)=>{
+       res.render("signup.ejs");
+     })
+
+     app.get("/signin",(req,res)=>{
+        res.render("signin.ejs");
+     })
+
+     app.post("/signup",(req,res)=>{
+
+        let newUsername=req.body.username;
+        let newEmail=req.body.email;
+        let newPassword=req.body.password;
+
+        const newUser = new User({
+          username: newUsername ,
+          email: newEmail,
+          password: newPassword,
+        });
+
+           newUser.save();
+
+           res.redirect("/home");
+
+     })
+
+     app.post("/signin",(req,res)=>{
+
+      
+     })
+
+ 
 
     app.get("/home",async(req,res)=>{
      try {
@@ -89,7 +138,7 @@ import bodyParser from "body-parser";
 
                 newBlogPost.save();
 
-                res.redirect("/");
+                res.redirect("/home");
 
       })
 
@@ -106,7 +155,7 @@ import bodyParser from "body-parser";
           }
 
              else{
-              res.redirect("/");
+              res.redirect("/home");
              }
 
         } catch (error) {

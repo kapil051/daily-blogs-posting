@@ -1,0 +1,19 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.main{
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.button{
+     height: 40px;
+     width: 65px;
+     cursor: pointer;
+}
